@@ -1,0 +1,51 @@
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+	<label>
+		First Name:
+		<input type="text" formControlName="firstName" required />
+	</label>
+
+	<label>
+		Last Name:
+		<input type="text" formControlName="lastName" />
+	</label>
+
+	<div formGroupName="address">
+		<h2>Addresses</h2>
+
+		<label>
+			Street:
+			<input type="text" formControlName="street" />
+		</label>
+
+		<label>
+			City:
+			<input type="text" formControlName="city" />
+		</label>
+
+		<label>
+			State:
+			<input type="text" formControlName="state" />
+		</label>
+
+		<label>
+			Zip:
+			<input type="text" formControlName="zip" />
+		</label>
+	</div>
+
+	<div formArrayName="aliases">
+		<h2>Aliases</h2>
+		<button type="button" (click)="addAlias()">Add another alias</button>
+
+		@for(alias of aliases.controls; track $index) {
+			<label>
+				Alias:
+				<input type="text" [formControlName]="$index" />
+			</label>
+		}
+	</div>
+
+	<p>Form Status: {{profileForm.status}}</p>
+
+	<button type="submit" [disabled]="profileForm.valid === false">Submit</button>
+</form>

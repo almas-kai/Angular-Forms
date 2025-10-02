@@ -5,4 +5,37 @@
 		<input type="text" [formControl]="favouriteDog" />
 	</label>
 	<p>Your favourite dog is: {{favouriteDog.value}}</p>
+	<button (click)="setFavouriteDefault()">My Default</button>
+
+	<form [formGroup]="profileForm" (ngSubmit)="onSubmit($event)" (reset)="onReset()">
+		<h2>Register Your Dog!</h2>
+		<label>
+			Name of your dog
+			<input type="text" formControlName="name" />
+		</label>
+		<label>
+			Age of your dog
+			<input type="number" formControlName="age" min="0" max="30" />
+		</label>
+		<label>
+			Breed of your dog
+			<input type="text" formControlName="breedName" />
+		</label>
+
+		<div formGroupName="address">
+			<label>
+				Country of your dog
+				<input type="text" formControlName="country" />
+			</label>
+			<label>
+				City of your dog
+				<input type="text" formControlName="city" />
+			</label>
+		</div>
+
+		<button type="button" (click)="showExampleProfileForm()">See an Example</button>
+		<button type="reset">Reset</button>
+
+		<button type="submit" [disabled]="profileForm.valid === false">Submit!</button>
+	</form>
 </div>
