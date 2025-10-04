@@ -1,0 +1,39 @@
+<form [formGroup]="signupForm">
+	<label>
+		Email:
+		<input type="email" required formControlName="email" />
+	</label>
+
+	<label>
+		Username:
+		<input type="text" required minlength="3" formControlName="username" />
+	</label>
+
+	<label>
+		Birth Date:
+		<input type="date" required formControlName="birthdate" />
+	</label>
+
+	<label>
+		Passowrd:
+		<input type="password" required minlength="3" formControlName="password" />
+	</label>
+
+	<div formArrayName="hobbies">
+		@for(hobbyControl of hobbies.controls; let i = $index; track $index) {
+			<label>
+				Hobby number {{i + 1}}:
+				<input required [formControlName]="i"/>
+				<button type="button" [disabled]="hobbies.controls.length === 1" (click)="removeHobby(i)">Remove</button>
+			</label>
+		}
+	</div>
+
+	<button type="button" (click)="addHobby()">Add Hobby</button>
+
+	<button type="submit" (click)="onSubmit()" [disabled]="signupForm.invalid">Submit</button>
+</form>
+
+@if(sumbittedData) {
+	{{sumbittedData | json }}
+}

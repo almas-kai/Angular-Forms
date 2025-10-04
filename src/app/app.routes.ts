@@ -3,6 +3,7 @@ import { ReactiveForms } from './components/reactive-forms/reactive-forms';
 import { TemplateDrivenForms } from './components/template-driven-forms/template-driven-forms';
 import { App } from './app';
 import { FormBuilderPractice } from './components/form-builder-practice/form-builder-practice';
+import { HomeWorkAssignment } from './components/home-work-assignment/home-work-assignment';
 
 export const routes: Routes = [
 	{
@@ -20,5 +21,9 @@ export const routes: Routes = [
 	{
 		path: 'form-builder-practice',
 		component: FormBuilderPractice
+	},
+	{
+		path: 'homework-assignment',
+		component: HomeWorkAssignment
 	}
 ];
